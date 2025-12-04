@@ -9,6 +9,7 @@ from lbm.src.app.knudsen import *
 from lbm.src.app.porous import *
 from lbm.src.app.porous_1 import *
 from lbm.src.app.porous_kn import *
+from lbm.src.app.porous_kn_1 import *
 
 
 
@@ -26,4 +27,5 @@ app_factory.register("knudsen",    knudsen)
 app_factory.register("porous",    porous)
 app_factory.register("porous_1",    porous_1)
 app_factory.register("porous_kn",    porous_kn)
+app_factory.register("porous_kn_1",    porous_kn_1)
 
