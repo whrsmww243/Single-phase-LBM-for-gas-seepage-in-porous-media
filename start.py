@@ -20,6 +20,8 @@ if __name__ == '__main__':
         print('python3 start.py app_name')
 
     # Instanciate app
+    # The available case names are listed in lbm/src/app/app.py
+    # New cases can be added by users
     app = app_factory.create('porous_kn')
 
     # Instanciate lattice
