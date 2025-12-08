@@ -24,35 +24,25 @@ Cases implementations include:
 
 **Innovations**
 
-1.We proposed an innovative method for obstacle placement and boundary condition configuration (lattice_obstacle_addForce.py, obstacle_ww.py)
-
- Main modifications include:
+1. We proposed an innovative method for obstacle placement and boundary condition configuration (lattice_obstacle_addForce.py, obstacle_ww.py), include:
 - __*add_obstacles_load*__ in **Base.py**
 - __*add_obstacle_2*__ in **lattice_obstacle_addForce.py**
 - __*nb_bounce_back_obstacle_kn_ww*__ in **nb_obstacle_addForce.py**
 
-2.We studied the differences in permeability of various gases
-
- Main modifications include:
+2. We studied the differences in permeability of various gases, include:
 - __*init*__ in **porous_kn_He.py**
 - __*ompute_lbm_parameters*__ in **porous_kn_He.py**
   
-3.We employed the infection element method (in C++) and in-situ grid expansion (in Python), ensuring that the generated pore grids are suitable for LBM computations.
-
- Main modifications include:
+3. We employed the infection element method (in C++) and in-situ grid expansion (in Python), ensuring that the generated pore grids are suitable for LBM computations, include:
 - __*Generation*__ and __*InfectFluid*__ in **Porous2D.cpp**
 - __*Expand_mesh*__ in **Expand_mesh.py**
 
-4.The permeability algorithm was augmented to terminate when the permeability residual falls below the set threshold
-
- Main modifications include:
+4. The permeability algorithm was augmented to terminate when the permeability residual falls below the set threshold, include:
 - __*outputs*__, __*judge_kError*__ and __*cacu_kError*__ in **Every_case.py** (such as porous_kn.py)
 - __*check_stop*__ in **Base.py**
 - __*cacu_k*__ in **lattice_obstacle_addForce.py**
 
-5.Added several functions suitable for this research, such as special pore structure generation, microfluidic chip replication and output functions
-
- Main modifications include:
+5. Added several functions suitable for this research, such as special pore structure generation, microfluidic chip replication and output functions, include:
 - **straight.py** and **wanqu.py** in folder **ts_gen**
 - **Fig_chuli.py** and **Fig_read.py** in folder **mfchip_rep**
 - __*export_g*__, __*export_poro_flux*__ and __*export_k_as_csv*__ in **plot.py**
