@@ -18,16 +18,16 @@ class porous_kn(base_app):
         self.L_real      = 0.1e-5
         self.L_lbm       = 1000
         self.Re_lbm      = 0.1
-        self.t_max       = 1.0 #实际计算时间
-        self.nu_real     = 1.06e-4 #实际流体黏度
+        self.t_max       = 1.0 # Real cacu time
+        self.nu_real     = 1.06e-4 # Real fluid viscosity
         self.ny          = self.L_lbm 
         self.dy          = 1.0
-        self.rho_lbm     = 1.0 #LBM密度
-        self.rho_real    = 0.08988 #1.0e3 #实际密度
+        self.rho_lbm     = 1.0 # LBM density
+        self.rho_real    = 0.08988 #1.0e3 # Real density
         self.Cs_real     = 340
         #self.tau_lbm     = 0.93
 
-        ########### 计算松弛时间所需要的参数(仅对气体)
+        ########### Parameters required for calculating relaxation time (only for gas)
         self.m_gas       = 3.35E-27
         self.d_gas       = 0.29E-9
         self.N           = 10
@@ -60,13 +60,13 @@ class porous_kn(base_app):
         self.compute_lbm_parameters()
 
         # Obstacles
-        self.filepath = 'G:/LBM/para_test/sample/渗透率测试/kuozhan/方向性/'
+        self.filepath = 'G:/LBM/para_test/sample/k_test/kuozhan/Directionality/'
         self.filename = self.filepath +'100_100_0.3_0.01_0.1_0.001_0.025_10x10_new'+'.txt'
         self.obstacle_ww =  obstacle('users_define')
 
     ### Compute remaining lbm parameters
     def compute_lbm_parameters(self):
-        ############ 计算松弛时间(仅对气体)
+        ############ Calculate relaxation time (only for gas)
         self.H           = self.L_real / 1000 * 10
         self.b_gas       = 2.0*math.pi*self.d_gas**3/(3.0*self.m_gas)
         self.b_rho       = self.b_gas*self.rho_real
@@ -84,7 +84,7 @@ class porous_kn(base_app):
         self.a = 0.45724*self.R**2*self.Tc**2/self.pc
         ############
 
-        ############ 计算r
+        ############ Caculate r
         self.first = (1.0/self.N)**2/(4.0*self.k_n*self.fi_kn)
         self.sigma = 1.0
         self.sigma_v = (2.0-self.sigma)/self.sigma
@@ -142,12 +142,12 @@ class porous_kn(base_app):
         val  = it
         ret  = (1.0 - math.exp(-val**2/(2.0*self.sigma**2)))
 
-        ############## 速度入口
+        ############## Velocity inlet
         #lattice.u_left[0,:] = ret*self.u_lbm
         #lattice.u_left[1,:] = 0.0
         ##############
 
-        ############## 压力入口
+        ############## Pressure inlet
         self.p_left = 1.0e6
         lattice.rho_left[:] = self.p_left / (self.rho_real*self.Cs_real**2) /1000.0 + self.rho_lbm
         #lattice.p_left[:] = lattice.rho_left[:] * self.Cs**2
@@ -170,9 +170,9 @@ class porous_kn(base_app):
         # Wall BCs
         lattice.zou_he_bottom_wall_velocity()
 
-        ###############速度入口
+        ############### Velocity inlet
         #lattice.zou_he_left_wall_velocity()
-        ###############压力入口
+        ############### Pressure inlet
         lattice.zou_he_left_wall_pressure()
 
         lattice.zou_he_top_wall_velocity()
@@ -201,7 +201,7 @@ class porous_kn(base_app):
         # Increment plotting counter
         self.output_it += 1
 
-    ### 误差判断
+    ### Error judgment
     def judge_kError(self, it):
         k_error = self.cacu_kError()
         if k_error <= self.k_setError:
