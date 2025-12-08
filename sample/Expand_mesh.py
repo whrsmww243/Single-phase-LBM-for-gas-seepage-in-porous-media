@@ -7,12 +7,12 @@ import matplotlib.pyplot  as plt
 
 kuozhan = 10
 
-filepath='G:/LBM/para_test/sample/渗透率测试/方向性/50x50/rand=15/' #输入路径
-filepath1='G:/LBM/para_test/sample/渗透率测试/' #输出路径
+filepath='G:/LBM/para_test/sample/k_test/Directionality/50x50/rand=15/' # Input path
+filepath1='G:/LBM/para_test/sample/k_test/' # Output path
 qianzhui= '50_50_0.3_0.05_0.1_0.01_0.025'
 name = filepath+qianzhui
 filename = name + '.txt'
-name_1 = filepath1+'kuozhan/方向性/50x50/rand=15/'+ qianzhui
+name_1 = filepath1+'kuozhan/Directionality/50x50/rand=15/'+ qianzhui
 name_2 = name_1+'_'+str(kuozhan)+'x'+str(kuozhan)#+'_rot90'
 name_3 = name_2+'.txt'
 
@@ -27,15 +27,15 @@ def plot_mesh():
     in_dat = np.reshape(in_dat, (data_size_x,data_size_y),order='F')
     in_dat = np.rot90(in_dat)
 
-    #扩展矩阵
+    # Expand Matrix
     in_dat = np.kron(in_dat, np.ones((kuozhan, kuozhan)))
 
-    #添加边界层
+    # Add inlet and outlet transition layers
     zeros_row = np.zeros((5, data_size_x*kuozhan))
     in_dat = np.vstack([zeros_row, in_dat, zeros_row])
     in_dat = np.rot90(in_dat)
 
-    #重新写出
+    # Rewrite
     flattened_data = in_dat.flatten(order='C')
     with open(name_3, 'w') as file:
         for num in flattened_data:
@@ -71,25 +71,25 @@ def plot_mesh():
     plt.savefig(filename1)
     plt.pause(0.5)
     plt.close()
-    print('生成完成')
+    print('Generation completed')
 
 plot_mesh()
 
-def gaixie():
-    # 打开文件并读取内容
+def Rewrite_mesh():
+    # Read file
     with open(name_3, 'r', encoding='utf-8') as file:
         content = file.read()
 
-    # 替换内容
+    # Replace
     content = content.replace('0.0', '0').replace('1.0', '1')
 
-    # 将修改后的内容写回文件
+    # Rewrite
     with open(name_2+'_new'+'.txt', 'w', encoding='utf-8') as file:
         file.write(content)
 
-    print('改写完成')
+    print('Rewrite completed')
 
-gaixie()
+Rewrite_mesh()
 
 
 
