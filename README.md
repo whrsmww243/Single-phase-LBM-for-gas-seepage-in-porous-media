@@ -2,7 +2,7 @@
 This is a single-phase LBM code suitable for gas seepage in porous media
 
 Fristly, we express our sincere gratitude and high respect to the reference authors. Reference code sources are as follows:
-- https://github.com/jviquerat/lbm/workflows/lbm/badge.svg?branch=master
+- https://github.com/jviquerat/lbm.git
 - https://github.com/Jeff-Hugh/GenPorMed.git
 
 Our work is adding several functions based on the reference codes, ensuring that the codes meet our research objectives
@@ -67,7 +67,7 @@ The following figure shows the code framework more clearly
 ## How to run LBM simulation
 1. Clone the repo
 ```shell
-    git clone https://github.com/whupmcww/Single-phase-LBM-for-gas-seepage-in-porous-media.git
+    git clone https://github.com/whrsmww243/Single-phase-LBM-for-gas-seepage-in-porous-media.git
 ```
 
 2. Select which case you want to use. Take case porous.py as example, set parameters for your case. Specify the grid file path if available
@@ -130,7 +130,7 @@ The following figure shows the code framework more clearly
 For more details about QSGS, please refer to https://github.com/Jeff-Hugh/GenPorMed.git
 
 ## Case explanation
-Conventional LBM testing, such as Couette flow, Poiseuille flow, etc., please refer to https://github.com/jviquerat/lbm/workflows/lbm/badge.svg?branch=master
+Conventional LBM testing, such as Couette flow, Poiseuille flow, etc., please refer to https://github.com/jviquerat/lbm.git
 
 Here we will focus on the unique aspect of our work, which is about the slip effects of gas seepage in porous media
 
